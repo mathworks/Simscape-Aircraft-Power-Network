@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Aircraft Power Network Demo Script</title><meta name="generator" content="MATLAB 9.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-03-04"><meta name="DC.source" content="APN_Demo_Script.m"><style type="text/css">
+      --><title>Aircraft Power Network Demo Script</title><meta name="generator" content="MATLAB 9.7"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2019-11-04"><meta name="DC.source" content="APN_Demo_Script.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -85,14 +85,14 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <tr>9.  <a href="matlab:cd([APN_HomeDir '/Libraries/Battery']);open_system('lead_acid_battery_estim');">Estimate Battery Parameters</a><br>
 <br>
 <tr><b><u>Tuning Abstract Model</u></b><br>
-<tr>10.  Tune Abstract Model: <a href="matlab:cd([APN_HomeDir '/Tune_Abstract_Model']);open_system('Tune_Abstract_BDMotor');">Compare Results</a>, <a href="matlab:cd([APN_HomeDir '/Tune_Abstract_Model']);open_system('Tune_Abstract_BDMotor_SDO');">Tune Model</a><br>
-<tr>11.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
+<tr>10.  Tune Abstract Model: <a href="matlab:cd(fileparts(which('Tune_Abstract_BDMotor')));open_system('Tune_Abstract_BDMotor');">Compare Results</a>, <a href="matlab:cd(fileparts(which('Tune_Abstract_BDMotor_SDO')));open_system('Tune_Abstract_BDMotor_SDO');">Tune Model</a><br>
+<tr>11.  <a href="matlab:cd(fileparts(which('APN_Model_PCT_Sim.m')));edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
 <br>
 <tr><b><u>Documenting Results</u></b><br>
-<tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
+<tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('APN_Model_Report_SHORT.rpt')));open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
 </style>
 </style>
-</p><p>Copyright 2013-2019 The MathWorks&#8482;, Inc.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019a</a><br></p></div><!--
+</p><p>Copyright 2013-2019 The MathWorks&#8482;, Inc.</p><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2019b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Aircraft Power Network Demo Script
 %
@@ -115,11 +115,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % <tr>9.  <a href="matlab:cd([APN_HomeDir '/Libraries/Battery']);open_system('lead_acid_battery_estim');">Estimate Battery Parameters</a><br>
 % <br>
 % <tr><b><u>Tuning Abstract Model</u></b><br>
-% <tr>10.  Tune Abstract Model: <a href="matlab:cd([APN_HomeDir '/Tune_Abstract_Model']);open_system('Tune_Abstract_BDMotor');">Compare Results</a>, <a href="matlab:cd([APN_HomeDir '/Tune_Abstract_Model']);open_system('Tune_Abstract_BDMotor_SDO');">Tune Model</a><br>
-% <tr>11.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
+% <tr>10.  Tune Abstract Model: <a href="matlab:cd(fileparts(which('Tune_Abstract_BDMotor')));open_system('Tune_Abstract_BDMotor');">Compare Results</a>, <a href="matlab:cd(fileparts(which('Tune_Abstract_BDMotor_SDO')));open_system('Tune_Abstract_BDMotor_SDO');">Tune Model</a><br>
+% <tr>11.  <a href="matlab:cd(fileparts(which('APN_Model_PCT_Sim.m')));edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
 % <br>
 % <tr><b><u>Documenting Results</u></b><br>
-% <tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
+% <tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('APN_Model_Report_SHORT.rpt')));open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
 % </style>
 % </style>
 % </html>

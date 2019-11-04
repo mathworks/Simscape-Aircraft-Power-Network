@@ -19,11 +19,11 @@
 % <tr>9.  <a href="matlab:cd([APN_HomeDir '/Libraries/Battery']);open_system('lead_acid_battery_estim');">Estimate Battery Parameters</a><br>
 % <br>
 % <tr><b><u>Tuning Abstract Model</u></b><br>
-% <tr>10.  Tune Abstract Model: <a href="matlab:cd([APN_HomeDir '/Tune_Abstract_Model']);open_system('Tune_Abstract_BDMotor');">Compare Results</a>, <a href="matlab:cd([APN_HomeDir '/Tune_Abstract_Model']);open_system('Tune_Abstract_BDMotor_SDO');">Tune Model</a><br>
-% <tr>11.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
+% <tr>10.  Tune Abstract Model: <a href="matlab:cd(fileparts(which('Tune_Abstract_BDMotor')));open_system('Tune_Abstract_BDMotor');">Compare Results</a>, <a href="matlab:cd(fileparts(which('Tune_Abstract_BDMotor_SDO')));open_system('Tune_Abstract_BDMotor_SDO');">Tune Model</a><br>
+% <tr>11.  <a href="matlab:cd(fileparts(which('APN_Model_PCT_Sim.m')));edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
 % <br>
 % <tr><b><u>Documenting Results</u></b><br>
-% <tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
+% <tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:cd(fileparts(which('APN_Model_Report_SHORT.rpt')));open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
 % </style>
 % </style>
 % </html>
