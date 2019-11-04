@@ -1,6 +1,7 @@
-% Copyright 2013 The MathWorks, Inc.
+% Copyright 2013-2016 The MathWorks, Inc.
 
 FCData = eval(char(who(['FC0' num2str(Flight_Cycle_Num) '*'])));
+
 
 numsigs = length(FCSignalNames);
 colorlist = {'y','m','r','g','b','c','k','m'};

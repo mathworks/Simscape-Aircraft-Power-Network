@@ -1,3 +1,5 @@
+% Copyright 2013-2016 The MathWorks, Inc.
+
 colordef black;
 
 time = Battery_DATA.time;
@@ -34,4 +36,3 @@ set(gca,'Box','on');
 axis([time(1) time(end) 1.8 2.25]);
 legend('Simulation Results','Measured Data','Location','Best');
 
-% Copyright 2013 The MathWorks, Inc.

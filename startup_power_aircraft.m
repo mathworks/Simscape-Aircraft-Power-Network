@@ -1,6 +1,6 @@
-% Copyright 2013 The MathWorks, Inc.
-
 % ADD PATHS
+% Copyright 2013-2016 The MathWorks, Inc.
+
 APN_HomeDir = pwd;
 addpath(APN_HomeDir);
 addpath([APN_HomeDir '/Images']);
@@ -9,11 +9,8 @@ addpath([APN_HomeDir '/Libraries/Battery']);
 addpath([APN_HomeDir '/PCT']);
 addpath([APN_HomeDir '/Reports']);
 addpath([APN_HomeDir '/Scripts_Data']);
-%addpath([APN_HomeDir '/Scripts_Data/Vab_Data']);
 addpath([APN_HomeDir '/Scripts_Data/FC_Data']);
-%addpath([APN_HomeDir '/Simulation_Results']);
 addpath([APN_HomeDir '/Supporting_Models']);
-%addpath([APN_HomeDir '/Tune_Abstract_Model']);
 
 % BUILD CUSTOM LIBRARIES
 if(exist('Libraries/Battery')==7)
@@ -44,4 +41,7 @@ APN_Model_PARAM
 
 % OPEN MODEL
 Aircraft_Power_Network
+
+%  OPEN DEMO SCRIPT
+open('APN_Demo_Script.html')
 

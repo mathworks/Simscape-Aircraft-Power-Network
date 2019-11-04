@@ -15,17 +15,18 @@
 % <tr>5.  <a href="matlab:open_system('Synch_Machine_Simple');">Synchronous Machine</a><br>
 % <tr>6.  <a href="matlab:open_system('ACGen_Cycloconverter');">AC Generator with Cycloconverter</a><br>
 % <tr>7.  <a href="matlab:open_system('ACGen_DCLink');">AC Generator with DC Link</a><br>
+% <tr>8.  Harmonic Analysis: <a href="matlab:open_system('Aircraft_Power_Network');open_system([bdroot '/Detailed']);open_system([bdroot '/Scopes/Gen1_Vab']);set_param([bdroot '/Generator'],'BlockChoice','Integrated Drive');Flight_Cycle_Num = 5;set_param(bdroot,'StopTime','0.5');">Interactive</a>, <a href="matlab:edit THD_Calculate;">Show Script</a>, <a href="matlab:THD_Calculate;">Perform Analysis</a><br>
 % <tr>9.  <a href="matlab:cd([APN_HomeDir '/Libraries/Battery']);open_system('lead_acid_battery_estim');">Estimate Battery Parameters</a><br>
 % <br>
 % <tr><b><u>Tuning Abstract Model</u></b><br>
-% <tr>11.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
+% <tr>10.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
 % <br>
 % <tr><b><u>Documenting Results</u></b><br>
-% <tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT1.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
+% <tr>11.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
 % </style>
 % </style>
 % </html>
 % 
 
-% Copyright 2013 The MathWorks(TM), Inc.
+% Copyright 2013-2016 The MathWorks(TM), Inc.
 

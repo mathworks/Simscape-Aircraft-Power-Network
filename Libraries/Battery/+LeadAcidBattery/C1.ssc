@@ -4,7 +4,7 @@ component C1
 % C1 = Tau1/R1 where Tau1 is the main branch time constant and
 % R1 is the main branch resistance.
 
-% Copyright 2008-2013 The MathWorks, Inc.
+% Copyright 2008-2016 The MathWorks, Inc.
     
     inputs
         R1 = {1, 'Ohm'}; % R1:left
@@ -26,7 +26,7 @@ component C1
     end
         
     function setup
-        Q = 0; % Initially uncharged
+        Q = {0, 'F*V'}; % Initially uncharged
         if Cmin<=0
             pm_error('simscape:GreaterThanZero','Minimum capacitance, Cmin>0');
         end

@@ -1,6 +1,6 @@
-% Copyright 2013 The MathWorks, Inc.
-
 function Select_APN_Model_Config(mdl,variant)
+% Copyright 2013-2016 The MathWorks, Inc.
+
 if (strcmp(variant,'Initial') || strcmp(variant,'Tuned') )
     set_param([mdl '/TRU DC Loads'], 'BlockChoice','Phasor');
     set_param([mdl '/Pump (12kVA AC)'], 'BlockChoice','Phasor');
@@ -26,5 +26,5 @@ elseif (strcmp(variant,'Detailed'))
     set_param([mdl '/Scopes/Power/Power Calc'], 'BlockChoice','Detailed');
     set_param([mdl '/powergui'], 'SimulationMode','Discrete');
     set_param([mdl '/powergui'], 'SampleTime','Ts');
-    set_param(mdl,'SolverType','Fixed-Step');
+    set_param(mdl,'SolverType','Fixed-Step','Solver','ode3');
 end

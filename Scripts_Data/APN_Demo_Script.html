@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Aircraft Power Network Demo Script</title><meta name="generator" content="MATLAB 8.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-09-24"><meta name="DC.source" content="APN_Demo_Script.m"><style type="text/css">
+      --><title>Aircraft Power Network Demo Script</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-02-22"><meta name="DC.source" content="APN_Demo_Script.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img { margin-bottom:0px; } 
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,11 +38,12 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, tt, code { font-size:12px; }
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
 pre { margin:0px 0px 20px; }
-pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -80,17 +81,18 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <tr>5.  <a href="matlab:open_system('Synch_Machine_Simple');">Synchronous Machine</a><br>
 <tr>6.  <a href="matlab:open_system('ACGen_Cycloconverter');">AC Generator with Cycloconverter</a><br>
 <tr>7.  <a href="matlab:open_system('ACGen_DCLink');">AC Generator with DC Link</a><br>
+<tr>8.  Harmonic Analysis: <a href="matlab:open_system('Aircraft_Power_Network');open_system([bdroot '/Detailed']);open_system([bdroot '/Scopes/Gen1_Vab']);set_param([bdroot '/Generator'],'BlockChoice','Integrated Drive');Flight_Cycle_Num = 5;set_param(bdroot,'StopTime','0.5');">Interactive</a>, <a href="matlab:edit THD_Calculate;">Show Script</a>, <a href="matlab:THD_Calculate;">Perform Analysis</a><br>
 <tr>9.  <a href="matlab:cd([APN_HomeDir '/Libraries/Battery']);open_system('lead_acid_battery_estim');">Estimate Battery Parameters</a><br>
 <br>
 <tr><b><u>Tuning Abstract Model</u></b><br>
-<tr>11.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
+<tr>10.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
 <br>
 <tr><b><u>Documenting Results</u></b><br>
-<tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT1.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
+<tr>11.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
 </style>
 </style>
-</p><pre class="codeinput"><span class="comment">% Copyright 2013 The MathWorks(TM), Inc.</span>
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013b</a><br></p></div><!--
+</p><pre class="codeinput"><span class="comment">% Copyright 2013-2016 The MathWorks(TM), Inc.</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Aircraft Power Network Demo Script
 %
@@ -109,19 +111,20 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 % <tr>5.  <a href="matlab:open_system('Synch_Machine_Simple');">Synchronous Machine</a><br>
 % <tr>6.  <a href="matlab:open_system('ACGen_Cycloconverter');">AC Generator with Cycloconverter</a><br>
 % <tr>7.  <a href="matlab:open_system('ACGen_DCLink');">AC Generator with DC Link</a><br>
+% <tr>8.  Harmonic Analysis: <a href="matlab:open_system('Aircraft_Power_Network');open_system([bdroot '/Detailed']);open_system([bdroot '/Scopes/Gen1_Vab']);set_param([bdroot '/Generator'],'BlockChoice','Integrated Drive');Flight_Cycle_Num = 5;set_param(bdroot,'StopTime','0.5');">Interactive</a>, <a href="matlab:edit THD_Calculate;">Show Script</a>, <a href="matlab:THD_Calculate;">Perform Analysis</a><br>
 % <tr>9.  <a href="matlab:cd([APN_HomeDir '/Libraries/Battery']);open_system('lead_acid_battery_estim');">Estimate Battery Parameters</a><br>
 % <br>
 % <tr><b><u>Tuning Abstract Model</u></b><br>
-% <tr>11.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
+% <tr>10.  <a href="matlab:cd([APN_HomeDir '/PCT']);edit APN_Model_PCT_Sim">Distribute Simulations Using Parallel Computing</a><br>
 % <br>
 % <tr><b><u>Documenting Results</u></b><br>
-% <tr>12.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT1.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
+% <tr>11.  Analyze and Document: <a href="matlab:open('APN_Model_Report_SHORT.html');">View Report</a>, <a href="matlab:open('APN_Model_Report_SHORT.rpt');">Generate Report</a><br>
 % </style>
 % </style>
 % </html>
 % 
 
-% Copyright 2013 The MathWorks(TM), Inc.
+% Copyright 2013-2016 The MathWorks(TM), Inc.
 
 
 ##### SOURCE END #####
