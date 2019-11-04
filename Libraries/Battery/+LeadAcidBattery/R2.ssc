@@ -1,0 +1,54 @@
+component R2
+% Main Branch Resistance, R2
+% This block implements the main branch resistance, R2.
+% R2 = R20*exp(A2*(1-SOC))/(1+exp(A22*i/Istar))
+
+% Copyright 2008-2013 The MathWorks, Inc.
+
+    inputs
+        SOC = {.8, '1'}; % SOC:left
+    end
+    
+    nodes
+        p = foundation.electrical.electrical; %  +:left
+        n = foundation.electrical.electrical; %  -:right
+    end
+    
+    variables
+        i = { 0, 'A' }; % Current through variable
+    end
+    
+    outputs
+        pow = {0,'W'}; % POW:right
+    end
+    
+    parameters
+        R20 = {1, 'Ohm'}; % R20
+        A21 = {0, '1'};   % A21
+        A22 = {0, '1'};   % A22
+        Istar = {1, 'A'}; % Nominal battery current, Istar
+    end
+        
+    function setup
+        if R20 <= 0
+            pm_error('simscape:GreaterThanZero','R20');
+        end
+        if Istar <= 0
+            pm_error('simscape:GreaterThanZero','Nominal battery current, Istar');
+        end
+    end
+    
+    branches
+        i: p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        let
+            v =  p.v - n.v;  % Across variable v from p to n
+        in
+            v == i*R20*exp(A21*(1-SOC))/(1 + exp(A22*i/Istar));
+            pow == v*i;
+        end
+    end
+    
+end

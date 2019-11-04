@@ -1,0 +1,56 @@
+component R1
+% Main Branch Resistance, R1
+% This block implements the main branch resistance R1 = -R10*ln(DOC) where
+% DOC is depth of charge and R10 is a constant. The minimum depth of charge
+% parameter protects the solver from the infinite gradient of dR1/dDOC that
+% occurs as DOC goes to zero. Below the minimum depth of charge, the
+% logarithm function is linearly extrapolated whilst matching the gradient.
+
+% Copyright 2008-2013 The MathWorks, Inc.
+    
+    inputs
+        DOC = {.8, '1'}; % DOC:right
+    end
+    
+    nodes
+        p = foundation.electrical.electrical; %  +:left
+        n = foundation.electrical.electrical; %  -:right
+    end
+    
+    outputs
+        R1 = {1,'Ohm'}; % R1:left
+    end
+    
+    parameters
+        R10 = {1, 'Ohm'};      % Resistance, R10
+        DOC_min = {1e-6, '1'}; % Minimum depth of charge
+    end
+    
+    variables
+        i = { 0, 'A' }; % Current through variable
+    end
+        
+    function setup
+        if R10 <= 0
+            pm_error('simscape:GreaterThanZero','Resistance, R10')
+        end
+        if DOC_min <= 0
+            pm_error('simscape:GreaterThanZero','Minimum depth of charge')
+        end
+    end
+    
+    branches
+        i: p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        if DOC <= DOC_min            % Linear extrapolation to prevent infinite dR1/dDOC as DOC->0
+            R1 == -R10*(log(DOC_min) + (1/DOC_min)*(DOC-DOC_min));
+        elseif DOC > 0.99999
+            R1 == -R10*log(0.99999); % Lower limit on R1 as DOC->1
+        else
+            R1 == -R10*log(DOC);     % Logarithmic relationship
+        end
+        p.v - n.v == i*R1;
+    end
+end

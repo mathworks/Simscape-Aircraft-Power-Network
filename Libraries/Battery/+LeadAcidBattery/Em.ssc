@@ -1,0 +1,93 @@
+component Em
+% Main Branch Voltage Source, Em
+% This block implements the main branch voltage source. Voltage is defined
+% by Em = Em0 - Ke*T*(1-SOC) where SOC = 1 - Qe/C(0,T) is the state of
+% charge, Qe is extracted charge, and C is given by C(i,T) =
+% Kc*C0*Kt(T)/( 1 + (Kc-1)(i/Istar)^delta ). The block also calculates
+% the depth of charge, DOC = 1 - Qe/C(Iavg,T) where Iavg is the
+% component current i filtered by a first order lag 1/(Tau1*s+1).
+
+% Copyright 2008-2013 The MathWorks, Inc.
+
+    outputs
+        SOC = {0.8, '1'}; % SOC:top
+        DOC = {0.8, '1'}; % DOC:top
+    end
+    
+    nodes
+        p = foundation.electrical.electrical; %  +:top
+        n = foundation.electrical.electrical; %  -:bottom
+    end
+    
+    inputs
+        T     = {300, 'K'}; % T:bottom
+        Kt    = {1,'1'};    % Kt:bottom
+    end
+    
+    parameters
+        Em0     = {1, 'V'};     % Open-circuit voltage at full charge, Em0
+        Ke      = {1, 'V/K'};   % Maximum voltage drop per Kelvin, Ke
+        Kc      = {1, '1'};     % Battery capacity constant, Kc
+        C0      = {1, 'A*s'};   % No-load capacity at 0 degC, C0
+        Istar   = {1, 'A'};     % Nominal battery current, Istar
+        delta   = {1, '1'};     % delta
+        Tau1    = {1, 's'};     % Main branch time constant, Tau1>0
+        Qinit   = {0, 'A*s'};   % Initial extracted charge
+    end
+    
+    variables
+        i       = { 0, 'A' };     % Current through variable
+        Iavg    = {0, 'A'};       % Average current given by (I/(Ts+1))
+        Qe      = {0,'A*s'};      % Extracted charge
+    end
+        
+    function setup
+        if Em0<=0
+            pm_error('simscape:GreaterThanZero','Open-circuit voltage at full charge, Em0');
+        end
+        if Kc<=0
+            pm_error('simscape:GreaterThanZero','Battery capacity constant, Kc');
+        end
+        if C0<=0
+            pm_error('simscape:GreaterThanZero','No-load capacity at 0 degC, C0');
+        end
+        if Istar<=0
+            pm_error('simscape:GreaterThanZero','Nominal batter current, Istar');
+        end
+        if Tau1<=0
+            pm_error('simscape:GreaterThanZero','Main branch time constant, Tau1');
+        end
+        if Qinit<0
+            pm_error('simscape:GreaterThanOrEqualToZero','Initial extracted charge');
+        end
+        Qe = Qinit;
+        Iavg = 0;
+    end
+    
+    branches
+        i: p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        let
+            % cap_u is usable battery capacity, and cap_t is total battery capacity
+            cap_u = if Iavg<=0, Kc*C0*Kt else Kc*C0*Kt/(1 + ((Kc-1)*power(Iavg/Istar,delta))) end;
+            cap_t = Kc*C0*Kt;
+        in
+            i == -Tau1*Iavg.der - Iavg;
+            Qe.der == -i;
+            if cap_t>{1e-9,'A*s'} % Protect against divide by zero
+                SOC == 1 - Qe/cap_t;
+            else
+                SOC == 1 - Qe/{1e-9,'A*s'};
+            end
+            if cap_u>{1e-9,'A*s'} % Protect against divide by zero
+                DOC == 1 - Qe/cap_u;
+            else
+                DOC == 1 - Qe/{1e-9,'A*s'};
+            end
+            p.v - n.v == Em0 - Ke*T*(1-SOC);
+        end
+    end
+    
+end

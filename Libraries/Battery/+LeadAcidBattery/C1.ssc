@@ -1,0 +1,55 @@
+component C1
+% Main Branch Capacitance, C1
+% This block implements the main branch capacitance.
+% C1 = Tau1/R1 where Tau1 is the main branch time constant and
+% R1 is the main branch resistance.
+
+% Copyright 2008-2013 The MathWorks, Inc.
+    
+    inputs
+        R1 = {1, 'Ohm'}; % R1:left
+    end
+    
+    nodes
+        p = foundation.electrical.electrical; %  +:left
+        n = foundation.electrical.electrical; %  -:right
+    end
+    
+    parameters
+        Tau1 = {1, 's'};   % Main branch time constant, Tau1>0
+        Cmin = {1e-8,'F'}; % Minimum capacitance, Cmin>0
+    end
+    
+    variables
+        i = { 1, 'A' }; % Current through variable
+        Q = {0, 'F*V'}; % Charge variable
+    end
+        
+    function setup
+        Q = 0; % Initially uncharged
+        if Cmin<=0
+            pm_error('simscape:GreaterThanZero','Minimum capacitance, Cmin>0');
+        end
+        if Tau1<=0
+            pm_error('simscape:GreaterThanZero','Main branch time constant, Tau1>0');
+        end
+    end
+    
+    branches
+        i: p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        let
+            v =  p.v - n.v;  % Across variable v from p to n
+        in
+            if (Tau1/Cmin > R1)
+                v == Q*R1/Tau1;
+            else
+                v == Q/Cmin;
+            end
+        end
+        i == Q.der;    
+    end
+    
+end

@@ -1,0 +1,55 @@
+component Rp
+% Parasitic Branch Resistance, Rp
+% This block implements the parasitic branch resistance.
+% Rp = 1/(Gp0*exp(v/(Tps+1)/Vp0 + Ap(1-T/Tf)))
+
+% Copyright 2008-2013 The MathWorks, Inc.
+
+    inputs
+        theta = {300, 'K'}; % T:right
+    end
+    
+    nodes
+        p = foundation.electrical.electrical; %  +:left
+        n = foundation.electrical.electrical; %  -:right
+    end
+    
+    parameters
+        Gp0 = {1, '1/Ohm'};  % Gp0
+        Vp0 = {1, 'V'};      % Voltage constant, Vp0
+        Ap  = {1, '1'};      % Ap
+        Tf  = {230, 'K'};    % Electrolyte Freezing Temperature, Tf
+    end
+    
+    variables
+        i = { 0, 'A' }; % Current through variable
+    end
+        
+    function setup
+        if Gp0<=0
+            pm_error('simscape:GreaterThanZero','Gp0');
+        end
+        if Vp0<=0
+            pm_error('simscape:GreaterThanZero','Voltage constant, Vp0');
+        end
+        if Ap<=0
+            pm_error('simscape:GreaterThanZero','Ap');
+        end
+        if Tf>={273,'K'}
+            pm_error('simscape:LessThan','Electrolyte freezing temperature, Tf','zero degrees C');
+        end
+    end
+    
+    branches
+        i: p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        let
+            v =  p.v - n.v;  % Across variable v from p to n
+        in
+            i == v*Gp0*exp(v/Vp0 + Ap*(1 - ((theta-{273,'K'})/(Tf-{273,'K'}))));
+        end
+    end
+    
+end

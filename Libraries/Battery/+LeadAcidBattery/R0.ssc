@@ -1,0 +1,40 @@
+component R0
+% Terminal Resistance, R0
+% This block implements the terminal resistance.
+% R0 = R00*(1+A0*(1-SOC))
+
+% Copyright 2008-2013 The MathWorks, Inc.
+    
+    inputs
+        SOC = {.8, '1'}; % SOC:left
+    end
+    
+    nodes
+        p = foundation.electrical.electrical; %  +:left
+        n = foundation.electrical.electrical; %  -:right
+    end
+    
+    variables
+        i = { 0, 'A' }; % Current through variable
+    end
+    
+    parameters
+        R00 = {1, 'Ohm'}; % Resistance at full charge, R00
+        A0 = {1,'1'};     % Resistance dependence on state of charge, A0
+    end
+        
+    function setup
+        if R00 <= 0
+            pm_error('simscape:GreaterThanZero','R00')
+        end
+    end
+    
+    branches
+        i: p.i -> n.i; % Through variable i from node p to node n
+    end
+    
+    equations
+        p.v - n.v == i*R00*(1 + A0*(1-SOC));
+    end
+    
+end
