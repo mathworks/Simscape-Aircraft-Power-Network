@@ -3,7 +3,7 @@ component R2
 % This block implements the main branch resistance, R2.
 % R2 = R20*exp(A2*(1-SOC))/(1+exp(A22*i/Istar))
 
-% Copyright 2008-2016 The MathWorks, Inc.
+% Copyright 2008-2017 The MathWorks, Inc.
 
     inputs
         SOC = {.8, '1'}; % SOC:left

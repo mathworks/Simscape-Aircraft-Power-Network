@@ -1,4 +1,4 @@
-% Copyright 2013-2016 The MathWorks, Inc.
+% Copyright 2013-2017 The MathWorks, Inc.
 
 mdl = 'Aircraft_Power_Network';
 open_system(mdl);
@@ -10,7 +10,7 @@ for Flight_Cycle_Num = 1:3
     sim(mdl);
 end
 
-open('APN_Model_Report_SHORT1.html');
+open('APN_Model_Report_SHORT.html');
 
 %{
 ModelVariants = {'System Level' 'Mean Value' 'Detailed'};
