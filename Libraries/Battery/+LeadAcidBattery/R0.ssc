@@ -3,7 +3,7 @@ component R0
 % This block implements the terminal resistance.
 % R0 = R00*(1+A0*(1-SOC))
 
-% Copyright 2008-2017 The MathWorks, Inc.
+% Copyright 2008-2018 The MathWorks, Inc.
     
     inputs
         SOC = {.8, '1'}; % SOC:left

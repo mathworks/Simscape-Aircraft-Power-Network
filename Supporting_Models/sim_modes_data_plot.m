@@ -1,4 +1,4 @@
-% Copyright 2013-2017 The MathWorks, Inc.
+% Copyright 2013-2018 The MathWorks, Inc.
 
 mdl = 'sim_modes_data';
 sim(mdl);

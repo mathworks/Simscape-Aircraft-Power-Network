@@ -1,5 +1,5 @@
 function Select_APN_Model_Config(mdl,variant)
-% Copyright 2013-2017 The MathWorks, Inc.
+% Copyright 2013-2018 The MathWorks, Inc.
 
 if (strcmp(variant,'Initial') || strcmp(variant,'Tuned') )
     set_param([mdl '/TRU DC Loads'], 'BlockChoice','Phasor');
