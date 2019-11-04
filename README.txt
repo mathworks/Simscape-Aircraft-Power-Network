@@ -7,4 +7,4 @@ open an list of hyperlinks to other submodels.
 Double-click on the "Initial", "Discrete", and "Tuned" subsystems
 to reconfigure the model for different tests.
 
-Copyright 2013-2018 The MathWorks, Inc.
+Copyright 2013-2019 The MathWorks, Inc.

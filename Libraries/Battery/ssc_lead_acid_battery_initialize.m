@@ -3,7 +3,7 @@
 % Electrical System Component Selection",  SAE World Congress & Exhibition,
 % April 2007, ref. 2007-01-0778
 %
-% Copyright 2008-2018 The MathWorks, Inc.
+% Copyright 2008-2019 The MathWorks, Inc.
 
 %% Battery Model Parameters - 50Ah
 NominalCap = 50; %(Ah)

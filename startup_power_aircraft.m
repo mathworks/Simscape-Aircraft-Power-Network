@@ -1,5 +1,5 @@
 % ADD PATHS
-% Copyright 2013-2018 The MathWorks, Inc.
+% Copyright 2013-2019 The MathWorks, Inc.
 
 APN_HomeDir = pwd;
 addpath(APN_HomeDir);

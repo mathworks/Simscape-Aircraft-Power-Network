@@ -1,5 +1,5 @@
 %% SETUP MODEL FOR RSIM
-% Copyright 2013-2018 The MathWorks(TM), Inc.
+% Copyright 2013-2019 The MathWorks(TM), Inc.
 
 mdl = 'Aircraft_Power_Network';
 open_system(mdl);
