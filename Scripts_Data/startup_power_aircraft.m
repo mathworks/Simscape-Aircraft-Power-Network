@@ -1,5 +1,5 @@
 % ADD PATHS
-% Copyright 2013-2019 The MathWorks, Inc.
+% Copyright 2013-2020 The MathWorks, Inc.
 
 APN_HomeDir = pwd;
 
@@ -8,7 +8,7 @@ APN_HomeDir = pwd;
 cd(fileparts(which('Aircraft_Power_Network.slx')))
 cd(['Libraries' filesep 'Battery']);
 if(exist('+LeadAcidBattery','dir') && ~exist('LeadAcidBattery_lib','file'))
-        ssc_build LeadAcidBattery
+    ssc_build LeadAcidBattery
 end
 cd(fileparts(which('Aircraft_Power_Network.slx')))
 
@@ -30,9 +30,17 @@ end
 % LOAD PARAMETERS
 APN_Model_PARAM
 
-% OPEN MODEL
-Aircraft_Power_Network
+open_start_content = 1;
 
-%  OPEN DEMO SCRIPT
-open('APN_Demo_Script.html')
+% If running in a parallel pool
+% do not open model or demo script
+if(~isempty(ver('parallel')))
+    if(~isempty(getCurrentTask()))
+        open_start_content = 0;
+    end
+end
 
+if(open_start_content)
+    Aircraft_Power_Network
+    open('APN_Demo_Script.html')
+end
