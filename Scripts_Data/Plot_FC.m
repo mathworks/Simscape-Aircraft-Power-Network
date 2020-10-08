@@ -7,6 +7,14 @@ numsigs = length(FCSignalNames);
 colorlist = {'y','m','r','g','b','c','k','m'};
 maxlist = [1 1 1 1 1 1 1 500];
 
+if ~exist('h1_APN', 'var') || ...
+        ~isgraphics(h1_APN, 'figure')
+    h1_APN = figure('Name', 'Aircraft_Power_Network');
+end
+figure(h1_APN)
+clf(h1_APN)
+
+
 set(gcf,'Position',[47    54   473   556]);   
 
 for i = 1:numsigs
