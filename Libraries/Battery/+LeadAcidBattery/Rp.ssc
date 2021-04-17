@@ -3,7 +3,7 @@ component Rp
 % This block implements the parasitic branch resistance.
 % Rp = 1/(Gp0*exp(v/(Tps+1)/Vp0 + Ap(1-T/Tf)))
 
-% Copyright 2008-2020 The MathWorks, Inc.
+% Copyright 2008-2021 The MathWorks, Inc.
 
     inputs
         theta = {300, 'K'}; % T:right

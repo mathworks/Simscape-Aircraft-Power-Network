@@ -4,7 +4,7 @@ component C1
 % C1 = Tau1/R1 where Tau1 is the main branch time constant and
 % R1 is the main branch resistance.
 
-% Copyright 2008-2020 The MathWorks, Inc.
+% Copyright 2008-2021 The MathWorks, Inc.
     
     inputs
         R1 = {1, 'Ohm'}; % R1:left

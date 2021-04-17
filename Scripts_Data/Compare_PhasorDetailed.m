@@ -1,4 +1,4 @@
-% Copyright 2013-2020 The MathWorks, Inc.
+% Copyright 2013-2021 The MathWorks, Inc.
 
 open_system([mdl '/Initial']);
 sim(mdl)

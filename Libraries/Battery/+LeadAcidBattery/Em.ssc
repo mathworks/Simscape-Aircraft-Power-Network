@@ -7,7 +7,7 @@ component Em
     % the depth of charge, DOC = 1 - Qe/C(Iavg,T) where Iavg is the
     % component current i filtered by a first order lag 1/(Tau1*s+1).
     
-    % Copyright 2008-2020 The MathWorks, Inc.
+    % Copyright 2008-2021 The MathWorks, Inc.
     
     outputs
         SOC = {0.8, '1'}; % SOC:top
