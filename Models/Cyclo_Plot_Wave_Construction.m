@@ -1,4 +1,4 @@
-% Copyright 2013-2021 The MathWorks, Inc.
+% Copyright 2013-2022 The MathWorks, Inc.
 
 figure(1)
 if exist('va_construct','var')                                           

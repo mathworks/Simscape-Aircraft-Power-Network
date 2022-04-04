@@ -1,4 +1,4 @@
-% Copyright 2013-2021 The MathWorks, Inc.
+% Copyright 2013-2022 The MathWorks, Inc.
 
 mdl = 'Aircraft_Power_Network';
 open_system(mdl);

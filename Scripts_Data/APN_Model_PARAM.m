@@ -1,4 +1,4 @@
-% Copyright 2013-2021 The MathWorks, Inc.
+% Copyright 2013-2022 The MathWorks, Inc.
 
 Ts=10e-6;
 %load PQ_DATA4
@@ -7,7 +7,7 @@ Flight_Cycle_Num = 1;
 ssc_lead_acid_battery_ini
 
 % LOAD FLIGHT CYCLE DATA
-cd([APN_HomeDir '/Scripts_Data/FC_Data']);
+cd([APN_HomeDir filesep 'Scripts_Data' filesep 'FC_Data']);
 x = dir('FC*.mat');
 FCFiles = {x.name};
 for i=1:length(FCFiles)

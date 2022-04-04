@@ -1,5 +1,5 @@
 % ADD PATHS
-% Copyright 2013-2021 The MathWorks, Inc.
+% Copyright 2013-2022 The MathWorks, Inc.
 
 APN_HomeDir = pwd;
 
