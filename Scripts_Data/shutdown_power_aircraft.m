@@ -1,5 +1,5 @@
 % Shutdown script for Aircraft Power Network
-% Copyright 2013-2022 The MathWorks, Inc.
+% Copyright 2013-2023 The MathWorks, Inc.
 
 % ssc_clean custom libraries
 cd(fileparts(which('Aircraft_Power_Network.slx')))
