@@ -1,5 +1,5 @@
 # **Aircraft Power Network**
-Copyright 2013-2021 The MathWorks(TM), Inc.
+Copyright 2013-2023 The MathWorks(TM), Inc.
 
 [![View Aircraft Power Network in Simscape Electrical on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/44124-aircraft-power-network-in-simscape-electrical)
 
