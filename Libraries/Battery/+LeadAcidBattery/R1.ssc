@@ -6,7 +6,7 @@ component R1
 % occurs as DOC goes to zero. Below the minimum depth of charge, the
 % logarithm function is linearly extrapolated whilst matching the gradient.
 
-% Copyright 2008-2023 The MathWorks, Inc.
+% Copyright 2008-2024 The MathWorks, Inc.
     
     inputs
         DOC = {.8, '1'}; % DOC:right

@@ -1,4 +1,4 @@
-% Copyright 2013-2023 The MathWorks, Inc.
+% Copyright 2013-2024 The MathWorks, Inc.
 
 cd([APN_HomeDir '/Simulation_Results']);
 mdl = 'Aircraft_Power_Network';

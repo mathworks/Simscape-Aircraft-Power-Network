@@ -1,4 +1,4 @@
-% Copyright 2013-2023 The MathWorks, Inc.
+% Copyright 2013-2024 The MathWorks, Inc.
 
 mdl = 'Signal_Builder_To_Workspace';
 open_system(mdl);
